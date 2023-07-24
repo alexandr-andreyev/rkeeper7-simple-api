@@ -45,7 +45,5 @@ func GetInfo(c *fiber.Ctx) error {
 		)
 	}
 	// Обработка ответа
-	return c.JSON(fiber.Map{
-		"data": resp,
-	})
+	return c.JSON(resp)
 }

@@ -1,0 +1,14 @@
+procedure CheckViewOnShowScript(Sender: TObject);
+begin
+  GUI.showmessage(RKCheck.CurrentOrder.OrderType);
+  if RKCheck.CurrentOrder.IsEmpty then
+    begin
+      RKCheck.CreateCheckItem(rkrefMenuItems, IntToStr(2168), IntToStr(1)); 
+      if trk7menuItem(TDish(RKCheck.CurrentCheckItem).RefItem).OpenPrice then
+
+        begin
+          TDish(RKCheck.CurrentCheckItem).IsUserPrice := true;
+          TDish(RKCheck.CurrentCheckItem).UserPrice := 500;
+        end;
+    end;
+end
