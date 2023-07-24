@@ -8,4 +8,5 @@ import (
 
 func Setup(app *fiber.App) {
 	app.Get("/api/v1/systeminfo", rest.GetInfo)
+	app.Post("/api/v1/refdata", rest.GetRefData)
 }
