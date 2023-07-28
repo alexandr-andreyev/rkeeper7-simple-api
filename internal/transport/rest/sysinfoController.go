@@ -9,41 +9,25 @@ import (
 )
 
 func GetInfo(c *fiber.Ctx) error {
-	req := HttpRequestData{
-		CashServerIP:   config.ServerConfig.Config.RKeeperCashServerIp,
-		CashServerPort: config.ServerConfig.Config.RkeeperCashServerPort,
-		Method:         "POST",
-		Username:       config.ServerConfig.Config.RkeeperUser,
-		Password:       config.ServerConfig.Config.RkeeperPassword,
-	}
+	Client := XmlRkeeper.NewClient(
+		config.ServerConfig.Config.RKeeperCashServerIp,
+		config.ServerConfig.Config.RkeeperCashServerPort,
+		config.ServerConfig.Config.RkeeperUser,
+		config.ServerConfig.Config.RkeeperPassword)
+
 	// Request xml body
-	xmlData, err := XmlRkeeper.RequestGetSystemInfo()
-	if err != nil {
-		return err
-	}
-	req.Payload = xmlData
-	//Send http request to Rkeeper7
-	body, err := HttpRequestToRkeeper(req)
+	resp, err := Client.GetSystemInfo()
 
 	if err != nil {
-		fmt.Println("err:", err)
+		fmt.Println("err:", err.Error())
 		return c.JSON(
 			&fiber.Map{
-				"data":  body,
+				"data":  resp,
 				"error": err.Error(),
 			},
 		)
 	}
-	resp, err := XmlRkeeper.ResponseGetSystemInfo(body)
-	if err != nil {
-		fmt.Println("err:", err)
-		return c.JSON(
-			&fiber.Map{
-				"data":  body,
-				"error": err.Error(),
-			},
-		)
-	}
+
 	// Обработка ответа
 	return c.JSON(resp)
 }
