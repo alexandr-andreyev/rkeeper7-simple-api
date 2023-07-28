@@ -21,6 +21,7 @@ type HttpRequestData struct {
 func HttpRequestToRkeeper(reqData HttpRequestData) ([]byte, error) {
 	//Отправка xml в http запросе
 	fmt.Printf("ReqData: %+v", reqData)
+	fmt.Printf("Req Body: %s", string(reqData.Payload))
 	url := fmt.Sprintf("https://%s:%d/rk7api/v0/xmlinterface.xml", reqData.CashServerIP, reqData.CashServerPort)
 	fmt.Println("Url>", url)
 	data := reqData.Payload
