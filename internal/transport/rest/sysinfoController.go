@@ -3,7 +3,7 @@ package rest
 import (
 	"fmt"
 	"rkeeper7-simpleapi-service/internal/config"
-	XmlRkeeper "rkeeper7-simpleapi-service/internal/xmlRkeeper"
+	XmlRkeeper "rkeeper7-simpleapi-service/pkg/xmlRkeeper-api"
 
 	"github.com/gofiber/fiber/v2"
 )
