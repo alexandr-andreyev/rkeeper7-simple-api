@@ -3,6 +3,7 @@ package XmlRkeeper
 import (
 	"bytes"
 	"crypto/tls"
+	"errors"
 	"fmt"
 	"io/ioutil"
 	"net/http"
@@ -30,7 +31,7 @@ func NewClient(ip string, port int, username string, password string) *Client {
 
 func (c *Client) newRequest(method string, body []byte) (*http.Request, error) {
 	url := fmt.Sprintf("https://%s:%d/rk7api/v0/xmlinterface.xml", c.CashServerIP, c.CashServerPort)
-
+	fmt.Println("send url >", url)
 	req, err := http.NewRequest(method, url, bytes.NewReader(body))
 	if err != nil {
 		return nil, err
@@ -61,10 +62,21 @@ func (c *Client) do(req *http.Request) ([]byte, error) {
 	}
 	defer resp.Body.Close()
 
-	body, err := ioutil.ReadAll(resp.Body)
-	if err != nil {
+	if resp.StatusCode >= 200 && resp.StatusCode <= 299 {
+		body, err := ioutil.ReadAll(resp.Body)
+
+		fmt.Println(string(body))
+		if err != nil {
+			return nil, err
+		}
+		return body, err
+	}
+	if resp.StatusCode == 401 {
+		s := fmt.Sprintf("Unauthorized, status: %d", resp.StatusCode)
+		err = errors.New(s)
 		return nil, err
 	}
-	//fmt.Println(string(body))
-	return body, err
+	s := fmt.Sprintf("Unknown error. Status: %d", resp.StatusCode)
+	err = errors.New(s)
+	return nil, err
 }
