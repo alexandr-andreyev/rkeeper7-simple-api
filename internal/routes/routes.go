@@ -11,4 +11,5 @@ func Setup(app *fiber.App) {
 	api.Get("/systeminfo", rest.GetInfo)
 	api.Post("/refdata", rest.GetMenuItems)
 	api.Post("/categlist", rest.GetCategList)
+	api.Post("/getordermenu", rest.GetOrderMenu)
 }
