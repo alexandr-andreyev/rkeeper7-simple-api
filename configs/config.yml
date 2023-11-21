@@ -1,0 +1,8 @@
+env: "local"
+storage_path: "./storage/sso.db"
+server_port: 9081
+rk7_client_config:
+  cash_server_ip: "127.0.0.1"
+  cash_server_port: 14450
+  user: "test"
+  password: "test"

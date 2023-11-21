@@ -8,7 +8,7 @@
 package main
 
 import (
-	"rkeeper7-simpleapi-service/app"
+	"rkeeper7-simpleapi-service/internal/app"
 
 	"github.com/pkg/errors"
 )
