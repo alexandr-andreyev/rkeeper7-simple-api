@@ -5,17 +5,15 @@ import (
 	"log"
 
 	"rkeeper7-simpleapi-service/internal/config"
-	"rkeeper7-simpleapi-service/internal/routes"
-
-	"github.com/gofiber/fiber/v2"
+	services "rkeeper7-simpleapi-service/internal/service"
+	"rkeeper7-simpleapi-service/internal/transport/rest"
 )
 
 // The wrapper of your app
 func rk7SimpleApiApp(s config.Server) {
-	//TODO Добавить логирование в файл
-	s.Winlog.Info(1, "In app.rk7SimpleApi")
+	services := services.NewServices()
+	handlers := rest.NewHandler(services)
+	app := handlers.Init()
 
-	app := fiber.New()
-	routes.Setup(app)
 	log.Fatal(app.Listen(fmt.Sprintf(":%d", s.Config.ServerPort)))
 }
