@@ -43,7 +43,7 @@ func (h Handler) setupRoutes(app *fiber.App) {
 	// //Справочники меню (блюда, цены)
 	// api.Post("/refdata", rest.GetMenuItems)
 	// //Справочники группы меню
-	// api.Post("/categlist", rest.GetCategList)
+	api.Get("/categlist", h.getCategList)
 	// //Доступное меню на кассе
 	// api.Post("/getordermenu", rest.GetOrderMenu)
 	// // Стоп листы

@@ -24,3 +24,12 @@ func (s RKeeperService) GetSystemInfo() (*rk7client.RK7QueryResult, error) {
 
 	return req, nil
 }
+
+func (s RKeeperService) GetCategList() (*rk7client.RK7QueryResult, error) {
+	req, err := s.repo.GetCategList()
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}

@@ -8,6 +8,7 @@ import (
 
 type IRKeeperService interface {
 	GetSystemInfo() (*rk7client.RK7QueryResult, error)
+	GetCategList() (*rk7client.RK7QueryResult, error)
 }
 
 type Services struct {

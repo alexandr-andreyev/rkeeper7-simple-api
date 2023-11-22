@@ -22,5 +22,9 @@ func (r rkeeperRepo) GetSystemInfo() (*rk7client.RK7QueryResult, error) {
 }
 
 func (r rkeeperRepo) GetCategList() (*rk7client.RK7QueryResult, error) {
-	return nil, nil
+	req, err := r.rkClient.GetCateglist()
+	if err != nil {
+		return nil, err
+	}
+	return req, nil
 }
