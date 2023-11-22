@@ -39,7 +39,7 @@ func (h Handler) Init() *fiber.App {
 func (h Handler) setupRoutes(app *fiber.App) {
 	api := app.Group("api/v1")
 	//Системная информация о ресторане
-	api.Get("/systeminfo", getSystemInfo)
+	api.Get("/systeminfo", h.getSystemInfo)
 	// //Справочники меню (блюда, цены)
 	// api.Post("/refdata", rest.GetMenuItems)
 	// //Справочники группы меню

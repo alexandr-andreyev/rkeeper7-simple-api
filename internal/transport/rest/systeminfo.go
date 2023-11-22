@@ -4,6 +4,10 @@ import (
 	"github.com/gofiber/fiber/v2"
 )
 
-func getSystemInfo(c *fiber.Ctx) error {
-	return c.JSON("test")
+func (h Handler) getSystemInfo(c *fiber.Ctx) error {
+	result, err := h.services.RKeeperService.GetSystemInfo()
+	if err != nil {
+		return err
+	}
+	return c.JSON(result)
 }

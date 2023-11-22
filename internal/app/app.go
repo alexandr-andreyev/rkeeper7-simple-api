@@ -5,13 +5,15 @@ import (
 	"log"
 
 	"rkeeper7-simpleapi-service/internal/config"
+	"rkeeper7-simpleapi-service/internal/repository"
 	services "rkeeper7-simpleapi-service/internal/service"
 	"rkeeper7-simpleapi-service/internal/transport/rest"
 )
 
 // The wrapper of your app
 func rk7SimpleApiApp(s config.Server) {
-	services := services.NewServices()
+	repo := repository.NewRepositories()
+	services := services.NewServices(repo)
 	handlers := rest.NewHandler(services)
 	app := handlers.Init()
 

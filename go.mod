@@ -16,6 +16,7 @@ require (
 )
 
 require (
+	github.com/alexandr-andreyev/rk7-xml-apiclient v0.0.0-20231116154540-8ab010b3bff9
 	github.com/andybalholm/brotli v1.0.5 // indirect
 	github.com/beevik/etree v1.2.0
 	github.com/google/uuid v1.3.0 // indirect
