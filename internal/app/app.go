@@ -12,7 +12,7 @@ import (
 
 // The wrapper of your app
 func rk7SimpleApiApp(s config.Server) {
-	repo := repository.NewRepositories()
+	repo := repository.NewRepositories(&s)
 	services := services.NewServices(repo)
 	handlers := rest.NewHandler(services)
 	app := handlers.Init()
