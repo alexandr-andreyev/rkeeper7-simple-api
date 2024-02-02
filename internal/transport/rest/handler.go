@@ -41,11 +41,11 @@ func (h Handler) setupRoutes(app *fiber.App) {
 	//Системная информация о ресторане
 	api.Get("/systeminfo", h.getSystemInfo)
 	// //Справочники меню (блюда, цены)
-	// api.Post("/refdata", rest.GetMenuItems)
+	api.Get("/menuitems", h.GetMenuItems)
 	// //Справочники группы меню
 	api.Get("/categlist", h.getCategList)
 	// //Доступное меню на кассе
-	// api.Post("/getordermenu", rest.GetOrderMenu)
+	api.Get("/getordermenu", h.GetOrderMenu)
 	// // Стоп листы
 	// api.Get("/dishrests", rest.GetDishRests)
 }
