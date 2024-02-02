@@ -2,13 +2,16 @@ package repository
 
 import (
 	"rkeeper7-simpleapi-service/internal/config"
+	rk7Repo "rkeeper7-simpleapi-service/internal/repository/rkeeper"
 
-	rk7client "github.com/alexandr-andreyev/rk7-xml-apiclient"
+	rk7client "rkeeper7-simpleapi-service/pkg/rk7-xml-apiclient"
 )
 
 type IRKeeperRepository interface {
 	GetSystemInfo() (*rk7client.RK7QueryResult, error)
 	GetCategList() (*rk7client.RK7QueryResult, error)
+	GetRefDataMenuItems(refName string, priceType int) (*rk7client.RK7QueryResult, error)
+	GetOrderMenu() (*rk7client.RK7QueryResult, error)
 }
 
 type Repositories struct {
@@ -22,5 +25,7 @@ func NewRepositories(cfg *config.Server) *Repositories {
 		cfg.Config.RK7ClientConfig.User,
 		cfg.Config.RK7ClientConfig.Password,
 	)
-	return &Repositories{RKeeperRepository: NewRkeeperRepo(rkClient)}
+	return &Repositories{
+		RKeeperRepository: rk7Repo.NewRkeeperRepo(rkClient),
+	}
 }
