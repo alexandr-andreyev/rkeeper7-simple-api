@@ -3,7 +3,7 @@ package services
 import (
 	"rkeeper7-simpleapi-service/internal/repository"
 
-	rk7client "rkeeper7-simpleapi-service/pkg/rk7-xml-apiclient"
+	rk7client "github.com/alexandr-andreyev/rk7-xml-apiclient"
 )
 
 type RKeeperService struct {
@@ -25,22 +25,23 @@ func (s RKeeperService) GetSystemInfo() (*rk7client.RK7QueryResult, error) {
 	return req, nil
 }
 
-func (s RKeeperService) GetCategList() (*rk7client.RK7QueryResult, error) {
+func (s RKeeperService) GetCategList() ([]rk7client.RK7Item, error) {
 	req, err := s.repo.GetCategList()
 	if err != nil {
 		return nil, err
 	}
-
-	return req, nil
+	items := req.CommandResult[0].Data[0].(rk7client.RK7Reference).Items
+	return items, nil
 }
 
 func (s RKeeperService) GetMenuItems(refName string, priceType int) (*map[string]interface{}, error) {
-	req, err := s.repo.GetRefDataMenuItems(refName, priceType)
+	req, err := s.repo.GetRefDataMenuItems()
 	if err != nil {
 		return nil, err
 	}
 	result := make(map[string]interface{})
-	result["products"] = req.CommandResult[0].RK7Reference.Items.Item
+	ref := req.CommandResult[0].Data[0].(rk7client.RK7Reference)
+	result["products"] = ref.Items
 	return &result, nil
 }
 
