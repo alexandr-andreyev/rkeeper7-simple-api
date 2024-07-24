@@ -6,3 +6,4 @@ rk7_client_config:
   cash_server_port: 14450
   user: "test"
   password: "test"
+  cash_code: 68
