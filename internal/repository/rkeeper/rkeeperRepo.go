@@ -43,6 +43,32 @@ func (r rkeeperRepo) GetRefDataMenuItems() (*rk7client.RK7QueryResult, error) {
 	return req, nil
 }
 
+func (r rkeeperRepo) GetRestaurants() (*rk7client.RK7QueryResult, error) {
+	input := []rk7client.RK7Command{
+		{
+			CMD:         rk7client.RK7CMD_GETREFDATA,
+			RefName:     rk7client.RK7Ref_RESTAURANTCONCEPTS,
+			OnlyActrive: rk7client.ONLY_ACTIVE_TRUE,
+		},
+		{
+			CMD:         rk7client.RK7CMD_GETREFDATA,
+			RefName:     rk7client.RK7Ref_RESTAURANTREGIONS,
+			OnlyActrive: rk7client.ONLY_ACTIVE_TRUE,
+		},
+		{
+			CMD:           rk7client.RK7CMD_GETREFDATA,
+			RefName:       rk7client.RK7REF_RESTAURANTS,
+			OnlyActrive:   rk7client.ONLY_ACTIVE_TRUE,
+			WithMacroProp: rk7client.WITHMACROPROP_TRUE,
+		},
+	}
+	req, err := r.rkClient.GetRefData(input)
+	if err != nil {
+		return nil, err
+	}
+	return req, nil
+}
+
 func (r rkeeperRepo) GetOrderMenu() (*rk7client.RK7QueryResult, error) {
 	req, err := r.rkClient.GetOrderMenu("68") //TODO брать из конфига код станции
 	if err != nil {
