@@ -48,4 +48,5 @@ func (h Handler) setupRoutes(app *fiber.App) {
 	api.Get("/getordermenu", h.GetOrderMenu)
 	// // Стоп листы
 	// api.Get("/dishrests", rest.GetDishRests)
+	api.Get("/restaurants", h.GetRestaurants)
 }
