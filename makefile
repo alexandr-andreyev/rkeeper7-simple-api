@@ -20,3 +20,6 @@ test:
 
 buildEXE:
 	go build -o "rk7simpleapi.exe" -a -ldflags "-X main.sha1ver=$(sha1ver)" .\cmd\rk7simpleapi-win  
+
+run:
+	./rk7simpleapi.exe debug
