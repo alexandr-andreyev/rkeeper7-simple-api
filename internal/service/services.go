@@ -11,6 +11,7 @@ type IRKeeperService interface {
 	GetCategList() ([]rk7client.RK7Item, error)
 	GetOrderMenu() (*rk7client.RK7QueryResult, error)
 	GetMenuItems(refName string, priceType int) (*map[string]interface{}, error)
+	GetRestaurants() (*rk7client.RK7QueryResult, error)
 }
 
 type Services struct {
