@@ -12,6 +12,7 @@ type IRKeeperRepository interface {
 	GetCategList() (*rk7client.RK7QueryResult, error)
 	GetRefDataMenuItems() (*rk7client.RK7QueryResult, error)
 	GetOrderMenu() (*rk7client.RK7QueryResult, error)
+	GetRestaurants() (*rk7client.RK7QueryResult, error)
 }
 
 type Repositories struct {
