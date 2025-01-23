@@ -12,7 +12,7 @@ require (
 )
 
 require (
-	github.com/alexandr-andreyev/rk7-xml-apiclient v0.1.2
+	github.com/alexandr-andreyev/rk7-xml-apiclient v0.1.4
 	github.com/andybalholm/brotli v1.0.5 // indirect
 	github.com/google/uuid v1.3.0 // indirect
 	github.com/ilyakaznacheev/cleanenv v1.5.0
