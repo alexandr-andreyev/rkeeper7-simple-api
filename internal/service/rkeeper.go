@@ -45,6 +45,15 @@ func (s RKeeperService) GetMenuItems(refName string, priceType int) (*map[string
 	return &result, nil
 }
 
+func (s RKeeperService) GetRestaurants() (*rk7client.RK7QueryResult, error) {
+	req, err := s.repo.GetRestaurants()
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 func (s RKeeperService) GetOrderMenu() (*rk7client.RK7QueryResult, error) {
 	req, err := s.repo.GetOrderMenu()
 	if err != nil {
