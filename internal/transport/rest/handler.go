@@ -49,4 +49,8 @@ func (h Handler) setupRoutes(app *fiber.App) {
 	// // Стоп листы
 	// api.Get("/dishrests", rest.GetDishRests)
 	api.Get("/restaurants", h.GetRestaurants)
+
+	// crm
+	api.Post("/generateTempCode", h.generateTempCodeFromCard)
+	api.Get("/getcardbytempcode", h.getCardByTempCode)
 }
